@@ -1,0 +1,34 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: api-names
+  labels:
+    app: api-names
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: api-names
+  template:
+    metadata:
+      labels:
+        app: api-names
+    spec:
+      containers:
+      - name: api-names
+        image: juanmigueld/api_names:1.3
+        ports:
+        - containerPort: 8080
+        env:
+          - name: SPRING_DATASOURCE_URL
+            value: "jdbc:mysql://mysql:3306/BaseNombre"
+          - name: SPRING_DATASOURCE_USERNAME
+            valueFrom:
+              secretKeyRef:
+                name: secret
+                key: DB_USERNAME
+          - name: SPRING_DATASOURCE_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: secret
+                key: DB_PASSWORD
