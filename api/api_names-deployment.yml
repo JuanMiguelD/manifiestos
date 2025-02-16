@@ -22,8 +22,9 @@ spec:
         env:
           - name: SPRING_JPA_HIBERNATE_DDL_AUTO
             value: "update"
+
           - name: SPRING_DATASOURCE_URL
-            value: "jdbc:mysql://mysql:3306/BaseNombre"
+            value: "jdbc:mysql://mysql:3306/BaseNombre?createDatabaseIfNotExist=true"
           - name: SPRING_DATASOURCE_USERNAME
             valueFrom:
               secretKeyRef:
