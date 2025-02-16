@@ -40,7 +40,7 @@ spec:
               memory: "1Gi"
             
 
-      volues:
+      volumes:
         - name: mysql-storage
           persistentVolumeClaim:
             claimName: mysql-pvc
